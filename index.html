@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baia 48 Flash · Porto Cervo · Noleggio Esclusivo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1a;
+    --deep: #0d1520;
+    --ocean: #0e2a3d;
+    --teal: #1a6b7a;
+    --aqua: #2ab8c8;
+    --gold: #c9a96e;
+    --sand: #e8dcc8;
+    --white: #f5f2ed;
+    --muted: rgba(245,242,237,0.5);
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–navy);
+color: var(–white);
+font-family: ‘Jost’, sans-serif;
+font-weight: 300;
+overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+position: relative;
+height: 100vh;
+min-height: 700px;
+display: flex;
+align-items: flex-end;
+padding: 0 6vw 8vh;
+overflow: hidden;
+}
+
+.hero-bg {
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse at 30% 60%, rgba(26,107,122,0.25) 0%, transparent 60%),
+radial-gradient(ellipse at 80% 20%, rgba(42,184,200,0.08) 0%, transparent 50%),
+linear-gradient(160deg, #050c14 0%, #0a1e2e 50%, #061018 100%);
+}
+
+/* Animated waves */
+.wave-container {
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 220px;
+overflow: hidden;
+}
+.wave {
+position: absolute;
+bottom: 0; left: -50%;
+width: 200%;
+height: 100%;
+opacity: 0.06;
+}
+.wave svg { width: 100%; height: 100%; }
+.wave1 { animation: wave-move 12s linear infinite; }
+.wave2 { animation: wave-move 18s linear infinite reverse; opacity: 0.04; }
+@keyframes wave-move {
+0% { transform: translateX(0); }
+100% { transform: translateX(25%); }
+}
+
+/* Stars/particles */
+.particles {
+position: absolute;
+inset: 0;
+background-image:
+radial-gradient(1px 1px at 20% 30%, rgba(201,169,110,0.6) 0%, transparent 100%),
+radial-gradient(1px 1px at 60% 15%, rgba(42,184,200,0.4) 0%, transparent 100%),
+radial-gradient(1.5px 1.5px at 80% 40%, rgba(201,169,110,0.3) 0%, transparent 100%),
+radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
+radial-gradient(1px 1px at 90% 60%, rgba(42,184,200,0.3) 0%, transparent 100%);
+}
+
+.nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 2rem 6vw;
+background: linear-gradient(to bottom, rgba(5,12,20,0.8) 0%, transparent 100%);
+backdrop-filter: blur(4px);
+}
+
+.nav-brand {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.1rem;
+font-weight: 400;
+letter-spacing: 0.15em;
+color: var(–gold);
+text-transform: uppercase;
+}
+
+.nav-cta {
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–white);
+border: 1px solid rgba(201,169,110,0.4);
+padding: 0.6rem 1.5rem;
+cursor: pointer;
+transition: all 0.3s;
+background: none;
+font-family: ‘Jost’, sans-serif;
+font-weight: 400;
+}
+.nav-cta:hover {
+background: var(–gold);
+color: var(–navy);
+border-color: var(–gold);
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 800px;
+}
+
+.hero-eyebrow {
+font-size: 0.65rem;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: var(–aqua);
+margin-bottom: 1.5rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+opacity: 0;
+animation: fade-up 1s ease 0.3s forwards;
+}
+.hero-eyebrow::before {
+content: ‘’;
+display: block;
+width: 40px;
+height: 1px;
+background: var(–aqua);
+}
+
+.hero-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(3.5rem, 8vw, 7rem);
+font-weight: 300;
+line-height: 0.9;
+margin-bottom: 2rem;
+opacity: 0;
+animation: fade-up 1s ease 0.5s forwards;
+}
+.hero-title em {
+font-style: italic;
+color: var(–gold);
+}
+
+.hero-sub {
+font-size: 0.85rem;
+letter-spacing: 0.12em;
+color: var(–muted);
+margin-bottom: 3rem;
+line-height: 1.8;
+max-width: 500px;
+opacity: 0;
+animation: fade-up 1s ease 0.7s forwards;
+}
+
+.hero-actions {
+display: flex;
+gap: 1.5rem;
+flex-wrap: wrap;
+opacity: 0;
+animation: fade-up 1s ease 0.9s forwards;
+}
+
+.btn-primary {
+background: var(–gold);
+color: var(–navy);
+border: none;
+padding: 1rem 2.5rem;
+font-family: ‘Jost’, sans-serif;
+font-size: 0.7rem;
+font-weight: 500;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.3s;
+text-decoration: none;
+display: inline-block;
+}
+.btn-primary:hover { background: var(–sand); transform: translateY(-2px); }
+
+.btn-secondary {
+background: transparent;
+color: var(–white);
+border: 1px solid rgba(245,242,237,0.3);
+padding: 1rem 2.5rem;
+font-family: ‘Jost’, sans-serif;
+font-size: 0.7rem;
+font-weight: 400;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.3s;
+text-decoration: none;
+display: inline-block;
+}
+.btn-secondary:hover { border-color: var(–white); background: rgba(255,255,255,0.05); }
+
+.hero-stats {
+position: absolute;
+right: 6vw;
+bottom: 8vh;
+z-index: 2;
+display: flex;
+flex-direction: column;
+gap: 2rem;
+text-align: right;
+opacity: 0;
+animation: fade-left 1s ease 1.1s forwards;
+}
+.stat-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.5rem;
+font-weight: 300;
+color: var(–gold);
+line-height: 1;
+}
+.stat-label {
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 0.2rem;
+}
+
+.scroll-hint {
+position: absolute;
+bottom: 3rem;
+left: 50%;
+transform: translateX(-50%);
+z-index: 2;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+opacity: 0;
+animation: fade-up 1s ease 1.5s forwards;
+}
+.scroll-hint span { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(–muted); }
+.scroll-line {
+width: 1px;
+height: 50px;
+background: linear-gradient(to bottom, var(–aqua), transparent);
+animation: scroll-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+@keyframes fade-up {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-left {
+from { opacity: 0; transform: translateX(30px); }
+to { opacity: 1; transform: translateX(0); }
+}
+
+/* ── SECTION COMMON ── */
+section { padding: 8rem 6vw; }
+
+.section-label {
+font-size: 0.6rem;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: var(–aqua);
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+.section-label::before {
+content: ‘’;
+display: block;
+width: 30px;
+height: 1px;
+background: var(–aqua);
+}
+
+.section-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.5rem, 5vw, 4rem);
+font-weight: 300;
+line-height: 1.1;
+margin-bottom: 1rem;
+}
+.section-title em { font-style: italic; color: var(–gold); }
+
+/* ── ABOUT ── */
+.about {
+background: var(–deep);
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6vw;
+align-items: center;
+}
+
+.about-visual {
+position: relative;
+height: 500px;
+}
+
+.about-card {
+position: absolute;
+background: linear-gradient(135deg, rgba(26,107,122,0.15), rgba(10,15,26,0.8));
+border: 1px solid rgba(42,184,200,0.15);
+backdrop-filter: blur(10px);
+}
+.about-card-main {
+inset: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 6rem;
+font-weight: 300;
+color: rgba(42,184,200,0.15);
+}
+.boat-icon { font-size: 8rem; }
+
+.about-card-badge {
+bottom: 2rem;
+left: 2rem;
+right: 2rem;
+padding: 1.5rem;
+display: flex;
+justify-content: space-between;
+}
+.badge-item { text-align: center; }
+.badge-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2rem;
+font-weight: 300;
+color: var(–gold);
+}
+.badge-text {
+font-size: 0.6rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 0.2rem;
+}
+
+.about-text p {
+color: var(–muted);
+line-height: 1.9;
+margin-bottom: 1.5rem;
+font-size: 0.9rem;
+}
+
+.amenities-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1px;
+margin-top: 2.5rem;
+border: 1px solid rgba(255,255,255,0.06);
+}
+.amenity {
+padding: 1.2rem 1rem;
+border: 1px solid rgba(255,255,255,0.06);
+font-size: 0.7rem;
+letter-spacing: 0.08em;
+color: var(–muted);
+display: flex;
+align-items: center;
+gap: 0.6rem;
+transition: all 0.3s;
+}
+.amenity:hover { background: rgba(42,184,200,0.05); color: var(–white); }
+.amenity-icon { color: var(–aqua); font-size: 1rem; }
+
+/* ── PRICING ── */
+.pricing { background: var(–navy); }
+
+.pricing-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1px;
+margin-top: 4rem;
+border: 1px solid rgba(255,255,255,0.06);
+}
+
+.price-card {
+background: var(–deep);
+padding: 2.5rem 2rem;
+border: 1px solid rgba(255,255,255,0.04);
+transition: all 0.4s;
+position: relative;
+overflow: hidden;
+}
+.price-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(to right, transparent, var(–teal), transparent);
+transform: scaleX(0);
+transition: transform 0.4s;
+}
+.price-card:hover::before { transform: scaleX(1); }
+.price-card:hover { background: rgba(26,107,122,0.1); }
+.price-card.featured {
+border-color: rgba(201,169,110,0.3);
+background: linear-gradient(135deg, rgba(201,169,110,0.08), rgba(10,15,26,0.9));
+}
+.price-card.featured::before {
+background: linear-gradient(to right, transparent, var(–gold), transparent);
+transform: scaleX(1);
+}
+
+.price-period {
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 1rem;
+}
+.price-amount {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 3rem;
+font-weight: 300;
+color: var(–white);
+line-height: 1;
+}
+.price-unit { font-size: 1rem; color: var(–muted); }
+.price-note { font-size: 0.7rem; color: var(–muted); margin-top: 0.5rem; line-height: 1.5; }
+.price-tag {
+position: absolute;
+top: 1.5rem; right: 1.5rem;
+background: var(–gold);
+color: var(–navy);
+font-size: 0.55rem;
+font-weight: 500;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 0.25rem 0.6rem;
+}
+
+.fuel-note {
+margin-top: 3rem;
+padding: 2rem;
+border: 1px solid rgba(42,184,200,0.15);
+background: rgba(42,184,200,0.03);
+display: grid;
+grid-template-columns: auto 1fr;
+gap: 1.5rem;
+align-items: start;
+}
+.fuel-icon { font-size: 2rem; color: var(–aqua); }
+.fuel-title {
+font-size: 0.7rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–aqua);
+margin-bottom: 0.5rem;
+}
+.fuel-text { font-size: 0.8rem; color: var(–muted); line-height: 1.8; }
+
+/* ── ITINERARI ── */
+.itinerari { background: var(–deep); }
+
+.destinations-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1px;
+margin-top: 4rem;
+}
+
+.dest-card {
+position: relative;
+padding: 3rem 2rem 2rem;
+background: var(–navy);
+border: 1px solid rgba(255,255,255,0.05);
+overflow: hidden;
+cursor: pointer;
+transition: all 0.4s;
+}
+.dest-card:hover { background: rgba(26,107,122,0.12); transform: translateY(-4px); }
+.dest-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 4rem;
+font-weight: 300;
+color: rgba(42,184,200,0.08);
+position: absolute;
+top: 1rem; right: 1.5rem;
+line-height: 1;
+}
+.dest-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.8rem;
+font-weight: 400;
+margin-bottom: 0.5rem;
+}
+.dest-fuel {
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 0.8rem;
+}
+.dest-desc { font-size: 0.78rem; color: var(–muted); line-height: 1.7; }
+
+/* ── REVIEWS ── */
+.reviews { background: var(–navy); }
+
+.reviews-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 1.5rem;
+margin-top: 4rem;
+}
+.review-card {
+padding: 2rem;
+background: var(–deep);
+border: 1px solid rgba(255,255,255,0.05);
+position: relative;
+}
+.review-stars { color: var(–gold); margin-bottom: 1rem; font-size: 0.8rem; }
+.review-text { font-size: 0.85rem; color: var(–muted); line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; }
+.review-author {
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–aqua);
+}
+.review-date { font-size: 0.6rem; color: rgba(245,242,237,0.25); margin-top: 0.2rem; }
+
+.rating-banner {
+display: flex;
+align-items: center;
+gap: 2rem;
+margin-bottom: 3rem;
+padding: 2rem;
+border: 1px solid rgba(201,169,110,0.2);
+background: rgba(201,169,110,0.04);
+}
+.rating-big {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 5rem;
+font-weight: 300;
+color: var(–gold);
+line-height: 1;
+}
+.rating-info-text { font-size: 0.7rem; color: var(–muted); }
+.rating-stars-big { color: var(–gold); font-size: 1.2rem; margin-bottom: 0.3rem; }
+
+/* ── CONTACT ── */
+.contact {
+background: var(–deep);
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6vw;
+align-items: start;
+}
+
+.contact-info p {
+color: var(–muted);
+line-height: 1.9;
+font-size: 0.88rem;
+margin-bottom: 2.5rem;
+}
+
+.contact-methods { display: flex; flex-direction: column; gap: 1rem; }
+.contact-method {
+display: flex;
+align-items: center;
+gap: 1.2rem;
+padding: 1.2rem 1.5rem;
+border: 1px solid rgba(255,255,255,0.07);
+text-decoration: none;
+color: var(–white);
+transition: all 0.3s;
+font-size: 0.82rem;
+}
+.contact-method:hover { border-color: var(–gold); background: rgba(201,169,110,0.05); }
+.contact-method-icon { font-size: 1.3rem; color: var(–aqua); width: 30px; }
+.contact-method-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(–muted); margin-bottom: 0.2rem; }
+
+/* ── CHATBOT ── */
+#chatbot-trigger {
+position: fixed;
+bottom: 2rem;
+right: 2rem;
+z-index: 200;
+background: var(–gold);
+color: var(–navy);
+border: none;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+font-size: 1.5rem;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 8px 32px rgba(201,169,110,0.4);
+transition: all 0.3s;
+animation: pulse-btn 3s ease-in-out infinite;
+}
+#chatbot-trigger:hover { transform: scale(1.1); background: var(–sand); }
+@keyframes pulse-btn {
+0%,100% { box-shadow: 0 8px 32px rgba(201,169,110,0.4); }
+50% { box-shadow: 0 8px 48px rgba(201,169,110,0.7); }
+}
+
+#chatbot-window {
+position: fixed;
+bottom: 5rem;
+right: 2rem;
+width: 380px;
+max-width: calc(100vw - 2rem);
+height: 560px;
+max-height: calc(100vh - 6rem);
+background: var(–deep);
+border: 1px solid rgba(201,169,110,0.2);
+box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+display: none;
+flex-direction: column;
+z-index: 200;
+overflow: hidden;
+animation: slide-up 0.3s ease;
+}
+#chatbot-window.open { display: flex; }
+@keyframes slide-up {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-header {
+padding: 1.2rem 1.5rem;
+background: linear-gradient(135deg, rgba(26,107,122,0.3), rgba(10,15,26,0.9));
+border-bottom: 1px solid rgba(201,169,110,0.15);
+display: flex;
+align-items: center;
+gap: 1rem;
+flex-shrink: 0;
+}
+.chat-avatar {
+width: 40px;
+height: 40px;
+background: var(–gold);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+flex-shrink: 0;
+}
+.chat-header-info { flex: 1; }
+.chat-name { font-size: 0.85rem; font-weight: 500; color: var(–white); }
+.chat-status { font-size: 0.6rem; color: var(–aqua); letter-spacing: 0.1em; }
+.chat-close {
+background: none;
+border: none;
+color: var(–muted);
+font-size: 1.2rem;
+cursor: pointer;
+padding: 0.2rem;
+transition: color 0.2s;
+}
+.chat-close:hover { color: var(–white); }
+
+.chat-messages {
+flex: 1;
+overflow-y: auto;
+padding: 1.5rem;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+scrollbar-width: thin;
+scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+
+.msg {
+max-width: 85%;
+font-size: 0.82rem;
+line-height: 1.6;
+}
+.msg.bot { align-self: flex-start; }
+.msg.user { align-self: flex-end; }
+
+.msg-bubble {
+padding: 0.8rem 1.1rem;
+border-radius: 2px;
+}
+.msg.bot .msg-bubble {
+background: rgba(26,107,122,0.15);
+border: 1px solid rgba(42,184,200,0.12);
+color: var(–white);
+border-top-left-radius: 0;
+}
+.msg.user .msg-bubble {
+background: var(–gold);
+color: var(–navy);
+font-weight: 400;
+border-top-right-radius: 0;
+}
+
+.msg-time {
+font-size: 0.55rem;
+color: rgba(245,242,237,0.2);
+margin-top: 0.3rem;
+letter-spacing: 0.05em;
+}
+.msg.user .msg-time { text-align: right; }
+
+.quick-replies {
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem;
+margin-top: 0.5rem;
+}
+.qr-btn {
+background: none;
+border: 1px solid rgba(42,184,200,0.3);
+color: var(–aqua);
+padding: 0.4rem 0.8rem;
+font-family: ‘Jost’, sans-serif;
+font-size: 0.7rem;
+cursor: pointer;
+transition: all 0.2s;
+letter-spacing: 0.05em;
+}
+.qr-btn:hover { background: rgba(42,184,200,0.1); border-color: var(–aqua); }
+
+.typing-indicator {
+display: none;
+align-self: flex-start;
+padding: 0.8rem 1.1rem;
+background: rgba(26,107,122,0.15);
+border: 1px solid rgba(42,184,200,0.12);
+gap: 0.3rem;
+align-items: center;
+}
+.typing-indicator.show { display: flex; }
+.typing-dot {
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background: var(–aqua);
+animation: typing 1.2s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing {
+0%,60%,100% { opacity: 0.2; transform: translateY(0); }
+30% { opacity: 1; transform: translateY(-4px); }
+}
+
+.chat-input-area {
+padding: 1rem 1.5rem;
+border-top: 1px solid rgba(255,255,255,0.06);
+display: flex;
+gap: 0.8rem;
+background: rgba(10,15,26,0.5);
+flex-shrink: 0;
+}
+#chat-input {
+flex: 1;
+background: rgba(255,255,255,0.05);
+border: 1px solid rgba(255,255,255,0.1);
+color: var(–white);
+padding: 0.7rem 1rem;
+font-family: ‘Jost’, sans-serif;
+font-size: 0.82rem;
+outline: none;
+transition: border-color 0.2s;
+border-radius: 2px;
+}
+#chat-input:focus { border-color: rgba(42,184,200,0.4); }
+#chat-input::placeholder { color: rgba(245,242,237,0.3); }
+
+#chat-send {
+background: var(–gold);
+color: var(–navy);
+border: none;
+width: 40px;
+height: 40px;
+cursor: pointer;
+font-size: 1rem;
+transition: all 0.2s;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+#chat-send:hover { background: var(–sand); }
+#chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── FOOTER ── */
+footer {
+background: var(–navy);
+border-top: 1px solid rgba(255,255,255,0.05);
+padding: 3rem 6vw;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 1.5rem;
+}
+.footer-brand {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.2rem;
+color: var(–gold);
+font-weight: 400;
+letter-spacing: 0.1em;
+}
+.footer-text { font-size: 0.65rem; letter-spacing: 0.1em; color: var(–muted); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+.about, .contact { grid-template-columns: 1fr; }
+.about-visual { height: 250px; }
+.hero-stats { position: relative; right: auto; bottom: auto; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+.hero { align-items: center; padding-top: 8rem; padding-bottom: 4rem; flex-direction: column; height: auto; min-height: 100vh; }
+.amenities-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Divider */
+.divider {
+width: 60px;
+height: 1px;
+background: linear-gradient(to right, var(–gold), transparent);
+margin: 2rem 0;
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav class="nav">
+  <div class="nav-brand">Baia 48 Flash · Porto Cervo</div>
+  <button class="nav-cta" onclick="openChat()">Richiedi Preventivo</button>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="particles"></div>
+  <div class="wave-container">
+    <div class="wave wave1">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,60 C150,100 350,0 600,60 C850,120 1050,20 1200,60 L1200,120 L0,120 Z" fill="currentColor" color="#1a6b7a"/>
+      </svg>
+    </div>
+    <div class="wave wave2">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,40 C200,80 400,10 600,50 C800,90 1000,30 1200,50 L1200,120 L0,120 Z" fill="currentColor" color="#0e2a3d"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Noleggio Esclusivo · Poltu Quatu</div>
+    <h1 class="hero-title">
+      Baia 48<br><em>Flash</em>
+    </h1>
+    <p class="hero-sub">
+      Yacht da 15 metri, 960 cavalli, completamente rinnovato nel 2021.<br>
+      La tua porta privata sull'Arcipelago della Maddalena e sulle acque più belle del Mediterraneo.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openChat()">Prenota Ora</button>
+      <a class="btn-secondary" href="#about">Scopri di Più</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">4.9</div>
+        <div class="stat-label">Rating · 17 recensioni</div>
+      </div>
+      <div>
+        <div class="stat-num">15m</div>
+        <div class="stat-label">Lunghezza</div>
+      </div>
+      <div>
+        <div class="stat-num">960</div>
+        <div class="stat-label">Cavalli</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scorri</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-card about-card-main">
+      <div class="boat-icon">⚓</div>
+    </div>
+    <div class="about-card about-card-badge">
+      <div class="badge-item">
+        <div class="badge-num">10</div>
+        <div class="badge-text">Max Persone</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-num">2</div>
+        <div class="badge-text">Cabine</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-num">2</div>
+        <div class="badge-text">Bagni</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-text">
+    <div class="section-label">La Barca</div>
+    <h2 class="section-title">Lusso e<br><em>Velocità</em></h2>
+    <div class="divider"></div>
+    <p>Lo yacht Baia 48 Flash è il connubio perfetto tra eleganza italiana e prestazioni mozzafiato. Con i suoi 960 cavalli e 15 metri di lunghezza, ti porta in pochi minuti nelle acque cristalline dell'Arcipelago della Maddalena.</p>
+    <p>Completamente rinnovato nel 2021, offre tutti i comfort di uno yacht moderno: aria condizionata, TV satellitare, cucina attrezzata, e un piccolo seabob Jobe per l'avventura in acqua. Il capitano Matteo sarà con te per tutta la giornata, garantendo sicurezza e un'esperienza indimenticabile.</p>
+
+```
+<div class="amenities-grid">
+  <div class="amenity"><span class="amenity-icon">❄️</span> Aria Condizionata</div>
+  <div class="amenity"><span class="amenity-icon">📡</span> TV Satellitare</div>
+  <div class="amenity"><span class="amenity-icon">🌊</span> Seabob Jobe</div>
+  <div class="amenity"><span class="amenity-icon">🏄</span> Paddle Board</div>
+  <div class="amenity"><span class="amenity-icon">📶</span> Wi-Fi a bordo</div>
+  <div class="amenity"><span class="amenity-icon">🍹</span> Soft Drinks incl.</div>
+  <div class="amenity"><span class="amenity-icon">☕</span> Caffè & Frutta</div>
+  <div class="amenity"><span class="amenity-icon">🎵</span> Impianto Stereo</div>
+  <div class="amenity"><span class="amenity-icon">⚓</span> Plancetta Poppa</div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- PRICING -->
+
+<section class="pricing" id="prezzi">
+  <div class="section-label">Tariffe 2025</div>
+  <h2 class="section-title">Prezzi<br><em>Trasparenti</em></h2>
+  <div class="divider"></div>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-period">1 Gen – 4 Giu · 17 Ago – 31 Dic</div>
+      <div class="price-amount">1.800<span class="price-unit">€</span></div>
+      <div class="price-note">/ giorno<br>Mezza giornata: 1.700€</div>
+    </div>
+    <div class="price-card">
+      <div class="price-period">5 Giugno – 30 Giugno</div>
+      <div class="price-amount">1.600<span class="price-unit">€</span></div>
+      <div class="price-note">/ giorno<br>Mezza giornata: 1.500€</div>
+    </div>
+    <div class="price-card">
+      <div class="price-period">1 Luglio – 16 Luglio</div>
+      <div class="price-amount">1.800<span class="price-unit">€</span></div>
+      <div class="price-note">/ giorno<br>Mezza giornata: 1.700€</div>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tag">Alta stagione</div>
+      <div class="price-period">17 Luglio – 16 Agosto</div>
+      <div class="price-amount">2.100<span class="price-unit">€</span></div>
+      <div class="price-note">/ giorno<br>Mezza giornata: 2.000€</div>
+    </div>
+    <div class="price-card">
+      <div class="price-period">Settimana (6–7 notti · max 4 persone)</div>
+      <div class="price-amount">10.000<span class="price-unit">€</span></div>
+      <div class="price-note">Prezzo settimanale<br>Include 2 cabine</div>
+    </div>
+  </div>
+
+  <div class="fuel-note">
+    <div class="fuel-icon">⛽</div>
+    <div>
+      <div class="fuel-title">Carburante Escluso</div>
+      <div class="fuel-text">
+        Il carburante non è incluso nel prezzo di noleggio (circa 340€/ora di navigazione).
+        A titolo indicativo: <strong style="color:var(--white)">Spargi / Budelli ~500€ a/r · La Maddalena ~300€ a/r · Corsica ~800€ a/r</strong>.
+        Cauzione: 250€. Check-in 10:00 · Check-out 18:00.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARI -->
+
+<section class="itinerari" id="itinerari">
+  <div class="section-label">Destinazioni</div>
+  <h2 class="section-title">Dove ti<br><em>Portiamo</em></h2>
+  <div class="divider"></div>
+
+  <div class="destinations-grid">
+    <div class="dest-card">
+      <div class="dest-num">01</div>
+      <div class="dest-name">Isola di Budelli</div>
+      <div class="dest-fuel">~500€ carburante a/r</div>
+      <div class="dest-desc">La celebre Spiaggia Rosa, uno dei luoghi più iconici e protetti del Mediterraneo. Un privilegio raro.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-num">02</div>
+      <div class="dest-name">Isola di Spargi</div>
+      <div class="dest-fuel">~500€ carburante a/r</div>
+      <div class="dest-desc">Acque turchesi e fondali cristallini. Una delle perle meno frequentate dell'arcipelago.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-num">03</div>
+      <div class="dest-name">La Maddalena</div>
+      <div class="dest-fuel">~300€ carburante a/r</div>
+      <div class="dest-desc">Il borgo pittoresco e le calette nascoste dell'arcipelago, a breve distanza da Poltu Quatu.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-num">04</div>
+      <div class="dest-name">Cala di Volpe</div>
+      <div class="dest-fuel">~200€ carburante a/r</div>
+      <div class="dest-desc">La baia più glamour della Costa Smeralda, raggiungibile in pochi minuti dal porto di partenza.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-num">05</div>
+      <div class="dest-name">Corsica</div>
+      <div class="dest-fuel">~800€ carburante a/r</div>
+      <div class="dest-desc">Bonifacio e le sue falesie, le spiagge selvagge del sud dell'isola. Un'avventura internazionale.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-num">06</div>
+      <div class="dest-name">Ristoranti VIP</div>
+      <div class="dest-fuel">Transfer su misura</div>
+      <div class="dest-desc">Nikki Beach, La Scogliera e i migliori locali della Costa Smeralda, raggiungibili via mare in stile.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+
+<section class="reviews" id="recensioni">
+  <div class="rating-banner">
+    <div class="rating-big">4.9</div>
+    <div>
+      <div class="rating-stars-big">★★★★★</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; margin-bottom:0.3rem;">17 recensioni verificate</div>
+      <div class="rating-info-text">Ogni categoria ha ricevuto 5 stelle: comfort, manutenzione, pulizia, accoglienza e rapporto qualità/prezzo.</div>
+    </div>
+  </div>
+
+  <div class="section-label">Testimoniali</div>
+  <h2 class="section-title">Cosa dicono<br><em>gli ospiti</em></h2>
+  <div class="divider"></div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Giornata bellissima, il nostro skipper molto professionale e disponibile! Consiglio"</div>
+      <div class="review-author">Maria</div>
+      <div class="review-date">Luglio 2025</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Comunicazione con il proprietario Matteo rapida e chiara. Comandante esperto e disponibile. Servizio e barca all'altezza delle aspettative."</div>
+      <div class="review-author">Francesco</div>
+      <div class="review-date">Agosto 2024</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Due giorni bellissimi. Giuseppe un eccellente professionista. Matteo, l'armatore, una persona squisita."</div>
+      <div class="review-author">Elia</div>
+      <div class="review-date">Giugno 2024</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Tutto perfetto, ottimo il servizio dello skipper e il pranzo a bordo."</div>
+      <div class="review-author">Matteo</div>
+      <div class="review-date">Settembre 2023</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★½</div>
+      <div class="review-text">"Comunicazione rapida. Bellissima giornata, il capitano Giuseppe educato disponibile e professionale."</div>
+      <div class="review-author">Alessandro</div>
+      <div class="review-date">Agosto 2023</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Bella barca e ottima comunicazione con proprietario e comandante. Consigliato!"</div>
+      <div class="review-author">Stefano</div>
+      <div class="review-date">Agosto 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contatti">
+  <div class="contact-info">
+    <div class="section-label">Contatti</div>
+    <h2 class="section-title">Pianifica la tua<br><em>Giornata</em></h2>
+    <div class="divider"></div>
+    <p>Contattami direttamente per ricevere un preventivo personalizzato, verificare la disponibilità o pianificare un itinerario su misura per te e i tuoi ospiti. Rispondo di solito entro poche ore.</p>
+    <p>Puoi anche usare il <strong style="color:var(--aqua)">chatbot AI</strong> in basso a destra per ricevere subito una stima del prezzo e inviare la tua richiesta.</p>
+
+```
+<div class="contact-methods">
+  <a href="mailto:matteopichi@gmail.com" class="contact-method">
+    <span class="contact-method-icon">✉️</span>
+    <div>
+      <div class="contact-method-label">Email</div>
+      matteopichi@gmail.com
+    </div>
+  </a>
+  <a href="https://wa.me/393396350463" target="_blank" class="contact-method">
+    <span class="contact-method-icon">💬</span>
+    <div>
+      <div class="contact-method-label">WhatsApp</div>
+      +39 339 635 0463
+    </div>
+  </a>
+  <div class="contact-method" style="cursor:default">
+    <span class="contact-method-icon">📍</span>
+    <div>
+      <div class="contact-method-label">Porto di partenza</div>
+      Poltu Quatu, Porto Cervo — Sardegna
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div>
+    <div class="section-label">Chatbot AI</div>
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; margin-bottom:1rem;">Preventivo<br><em style="color:var(--gold)">Istantaneo</em></h3>
+    <div class="divider"></div>
+    <p style="color:var(--muted); font-size:0.88rem; line-height:1.9; margin-bottom:2rem;">
+      Il nostro assistente AI risponde 24/7 a tutte le tue domande: disponibilità, prezzi, itinerari, carburante, e raccoglie la tua richiesta direttamente per Matteo.
+    </p>
+    <button class="btn-primary" onclick="openChat()" style="font-size:0.75rem; padding:1.2rem 3rem;">
+      💬 &nbsp; Chatta con l'Assistente
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div>
+    <div class="footer-brand">Baia 48 Flash · Porto Cervo</div>
+    <div class="footer-text" style="margin-top:0.5rem;">Poltu Quatu, Sardegna · Noleggio con skipper</div>
+  </div>
+  <div class="footer-text" style="text-align:right">
+    <div>matteopichi@gmail.com</div>
+    <div>+39 339 635 0463</div>
+  </div>
+</footer>
+
+<!-- CHATBOT TRIGGER -->
+
+<button id="chatbot-trigger" onclick="toggleChat()" title="Chatta con noi">⚓</button>
+
+<!-- CHATBOT WINDOW -->
+
+<div id="chatbot-window">
+  <div class="chat-header">
+    <div class="chat-avatar">⛵</div>
+    <div class="chat-header-info">
+      <div class="chat-name">Assistente Baia 48</div>
+      <div class="chat-status">● Online · Risposta immediata</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div class="chat-messages" id="chat-messages">
+    <!-- Messages injected by JS -->
+  </div>
+
+  <div class="typing-indicator" id="typing-indicator">
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+  </div>
+
+  <div class="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Scrivi un messaggio..." onkeydown="if(event.key==='Enter') sendMessage()">
+    <button id="chat-send" onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<script>
+// ── CHATBOT LOGIC ──
+let chatOpen = false;
+let conversationHistory = [];
+let isTyping = false;
+
+const SYSTEM_PROMPT = `Sei l'assistente virtuale di Matteo, proprietario dello yacht Baia 48 Flash ormeggiato a Poltu Quatu, Porto Cervo (Sardegna). Il tuo compito è aiutare i potenziali clienti a pianificare il loro noleggio, rispondere alle domande e raccogliere le richieste di prenotazione.
+
+INFORMAZIONI SULLA BARCA:
+- Modello: Baia 48 Flash Grigio Scuro (2010, refittata 2021)
+- Lunghezza: 15 metri
+- Potenza: 960 CV
+- Max passeggeri: 10 persone (noleggio giornaliero) / 4 persone (crociera multi-giorno con cabine)
+- Cabine: 2 | Bagni: 2 | Posti letto: 4
+- Porto partenza: Poltu Quatu, vicino a Porto Cervo
+- Skipper incluso sempre (Matteo o Giuseppe)
+
+DOTAZIONI: Aria condizionata, TV satellitare, Wi-Fi, Seabob Jobe, paddle board, maschera/boccaglio, plancetta di poppa, impianto stereo, generatore, tendalino, elica di manovra. Inclusi: soft drinks, caffè, frutta fresca, snacks.
+
+TARIFFE:
+- 1 Gen – 4 Giu / 17 Ago – 31 Dic: 1.800€/giorno | 1.700€ mezza giornata
+- 5 Giu – 30 Giu: 1.600€/giorno | 1.500€ mezza giornata
+- 1 Lug – 16 Lug: 1.800€/giorno | 1.700€ mezza giornata
+- 17 Lug – 16 Ago: 2.100€/giorno | 2.000€ mezza giornata (ALTA STAGIONE)
+- Settimanale (6-7 notti, max 4 persone): 10.000€
+
+COSTI EXTRA (non inclusi):
+- Carburante: ~340€ per ora di navigazione
+- Destinazioni e costi carburante a/r indicativi: Spargi/Budelli ~500€, La Maddalena ~300€, Cala di Volpe ~200€, Corsica ~800€
+- Porto/ormeggio a carico del cliente
+- Cambusa speciale su richiesta (a carico del cliente)
+- Cauzione: 250€
+
+ORARI: Check-in 10:00 / Check-out 18:00
+
+DESTINAZIONI: Isola di Spargi, Isola di Budelli (Spiaggia Rosa), La Maddalena, Cala di Volpe, Corsica (Bonifacio), transfer a ristoranti VIP (Nikki Beach, La Scogliera, ecc.)
+
+CONTATTI MATTEO: Email: matteopichi@gmail.com | WhatsApp: +39 339 635 0463
+
+ISTRUZIONI COMPORTAMENTO:
+- Rispondi in italiano (o nella lingua del cliente se scrive in inglese/francese/spagnolo)
+- Sii cordiale, professionale ed entusiasta
+- Per richieste di prenotazione, chiedi: data desiderata, numero di persone, durata (mezza giornata/giornata intera/più giorni), destinazione preferita
+- Calcola sempre il preventivo indicativo includendo una stima del carburante
+- Alla fine di ogni conversazione di prenotazione, invita l'utente a contattare Matteo direttamente su WhatsApp o email per confermare
+- Tieni risposte concise ma complete, max 3-4 frasi per messaggio
+- Usa emoji nautici con moderazione 🌊⚓`;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win = document.getElementById('chatbot-window');
+  const trigger = document.getElementById('chatbot-trigger');
+  if (chatOpen) {
+    win.classList.add('open');
+    trigger.textContent = '✕';
+    if (conversationHistory.length === 0) {
+      setTimeout(() => addBotMessage(
+        "Ciao! 👋 Sono l'assistente virtuale della Baia 48 Flash di Matteo.\n\nPosso aiutarti con informazioni, preventivi e disponibilità. Come posso aiutarti oggi?",
+        ["💰 Prezzi e tariffe", "🗺️ Destinazioni", "📅 Verifica disponibilità", "📞 Contatta Matteo"]
+      ), 400);
+    }
+    setTimeout(() => document.getElementById('chat-input').focus(), 300);
+  } else {
+    win.classList.remove('open');
+    trigger.textContent = '⚓';
+  }
+}
+
+function openChat() {
+  if (!chatOpen) toggleChat();
+  else document.getElementById('chat-input').focus();
+}
+
+function addUserMessage(text) {
+  const msgs = document.getElementById('chat-messages');
+  const now = new Date().toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  div.innerHTML = `<div class="msg-bubble">${escapeHtml(text)}</div><div class="msg-time">${now}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addBotMessage(text, quickReplies = []) {
+  const msgs = document.getElementById('chat-messages');
+  const now = new Date().toLocaleTimeString('it-IT', {hour:'2-digit', minute:'2-digit'});
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  let qrHtml = '';
+  if (quickReplies.length > 0) {
+    qrHtml = `<div class="quick-replies">${quickReplies.map(qr =>
+      `<button class="qr-btn" onclick="handleQuickReply('${escapeHtml(qr)}')">${escapeHtml(qr)}</button>`
+    ).join('')}</div>`;
+  }
+  div.innerHTML = `<div class="msg-bubble">${text.replace(/\n/g, '<br>')}</div>${qrHtml}<div class="msg-time">${now}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  document.getElementById('typing-indicator').classList.add('show');
+  document.getElementById('chat-messages').scrollTop = 99999;
+}
+function hideTyping() {
+  document.getElementById('typing-indicator').classList.remove('show');
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function handleQuickReply(text) {
+  addUserMessage(text);
+  conversationHistory.push({ role: 'user', content: text });
+  callClaude();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text || isTyping) return;
+  input.value = '';
+  addUserMessage(text);
+  conversationHistory.push({ role: 'user', content: text });
+  await callClaude();
+}
+
+async function callClaude() {
+  isTyping = true;
+  document.getElementById('chat-send').disabled = true;
+  showTyping();
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: conversationHistory
+      })
+    });
+
+    const data = await response.json();
+    hideTyping();
+
+    if (data.content && data.content[0]) {
+      const reply = data.content[0].text;
+      conversationHistory.push({ role: 'assistant', content: reply });
+      addBotMessage(reply);
+    } else {
+      addBotMessage("Mi dispiace, c'è stato un problema tecnico. Contatta Matteo direttamente: +39 339 635 0463 su WhatsApp oppure matteopichi@gmail.com");
+    }
+  } catch (err) {
+    hideTyping();
+    addBotMessage("Problema di connessione. Puoi contattare Matteo direttamente:\n📱 WhatsApp: +39 339 635 0463\n✉️ matteopichi@gmail.com");
+  }
+
+  isTyping = false;
+  document.getElementById('chat-send').disabled = false;
+}
+</script>
+
+</body>
+</html>
